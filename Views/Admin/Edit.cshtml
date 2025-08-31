@@ -1,0 +1,33 @@
+﻿
+@model Myblog.ViewModel.BlogFormModel
+@{
+    ViewData["Title"] = "Edit Blog";
+}
+
+<h2>Edit Blog</h2>
+
+@if (!string.IsNullOrEmpty(Model.RejectionReason))
+{
+    <div class="alert alert-danger">
+        <strong>Rejection Reason:</strong> @Model.RejectionReason
+    </div>
+}
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Content" class="form-label">Content</label>
+        <textarea asp-for="Content" class="form-control" rows="5" required></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Resubmit for Approval</button>
+    <a asp-action="AdminIndex" class="btn btn-secondary">Cancel</a>
+</form>

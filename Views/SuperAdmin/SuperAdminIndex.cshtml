@@ -1,0 +1,38 @@
+﻿@model IEnumerable< Myblog.ViewModel.BlogFormModel>
+@{
+    ViewData["Title"] = "SuperAdminIndex";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<h2>Pending Blogs for Approval</h2>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Title</th>
+           @*  <th>Author</th> *@
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model)
+        {
+            <tr>
+                <td>@blog.Title</td>
+              @*   <td>@blog.Author?.FullName</td> *@
+                <td>@blog.CreatedAt.ToString("yyyy-MM-dd")</td>
+                <td>
+                    
+                    <span class="badge @(blog.Status == "Approved" ? "bg-success" : blog.Status == "Rejected" ? "bg-danger" : blog.Status == "Pending" ? "bg-warning" : "bg-secondary")">
+                        @blog.Status
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Review" asp-route-id="@blog.Id" class="btn btn-info btn-sm">Review</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
