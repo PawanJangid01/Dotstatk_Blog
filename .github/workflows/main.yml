@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
     defaults:
       run:
-        shell: pwsh -ExecutionPolicy Bypass
+         shell: powershell -ExecutionPolicy Bypass
     steps:
       - name: Checkout repository
  
