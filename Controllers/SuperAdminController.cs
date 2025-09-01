@@ -18,7 +18,11 @@ public class SuperAdminController : Controller
         var blogs = await _context.Blogs.Where(b => b.Status == "Pending" || b.Status == "Approved").ToListAsync();        
         return View(blogs);
     }
-
+    public async Task<IActionResult> Blog()
+    {
+        var blogs = await _context.Blogs.Where(b => b.Status == "Pending" || b.Status == "Approved").ToListAsync();
+        return View(blogs);
+    }
     public IActionResult Review(int id)
     {
         var blog = _context.Blogs
